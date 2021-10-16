@@ -1,0 +1,3 @@
+# Event-buddy
+
+## Installed dependencies
