@@ -53,33 +53,8 @@
       </div>
     </nav>
     <!-- ................ -->
-    <div class="jumbotron jumbotron-fluid container my-4">
-      <div class="container mx-4" style="color: white">
-        <h2 class="">Welcome to Event-Buddy</h2>
-        <p>Plan your Events anytime anywhere</p>
-      </div>
-    </div>
-    <!-- .......  -->
-    <div class="container">
-      <md-card>
-        <md-card-media-cover md-solid>
-          <md-card-media md-ratio="4:3">
-            <img
-              src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80"
-            />
-          </md-card-media>
 
-          <md-card-area>
-            <md-card-header>
-              <span class="md-title">Solid background</span>
-              <md-button class="btn my-2 my-sm-0" type="submit">
-                <i class="fas fa-sign-in-alt"></i> Login
-              </md-button>
-            </md-card-header>
-          </md-card-area>
-        </md-card-media-cover>
-      </md-card>
-    </div>
+    <!-- .......  -->
   </div>
 </template>
 
@@ -89,19 +64,8 @@ export default {
 };
 </script>
 
-<style  scoped>
+<style  >
 .navbar {
   background-color: #e4fbff;
-}
-.jumbotron {
-  background-image: url("https://images.unsplash.com/photo-1489513691500-41ef4acdb665?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80");
-  background-size: cover;
-}
-
-.md-card {
-  width: 320px;
-  margin: 4px;
-  display: inline-block;
-  vertical-align: top;
 }
 </style>
