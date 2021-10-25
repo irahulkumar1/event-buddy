@@ -2,10 +2,12 @@ import Vue from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+
 import VueMaterial from 'vue-material';
 // import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css'
+import moment from 'moment';
 
 
 Vue.filter('capitalize', function (value) {
@@ -13,6 +15,12 @@ Vue.filter('capitalize', function (value) {
         return value.charAt(0).toUpperCase() + value.slice(1)
     }
     return ''
+})
+
+Vue.filter('formatDate', function (value, formatType = "LL") {
+    if (!value) return ""
+
+    return moment(value).format(formatType)
 })
 
 Vue.use(VueMaterial)

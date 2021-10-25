@@ -1,28 +1,25 @@
 <template>
   <div id="app">
     <NavBar />
-    <MainJumbotron />
-    <HomePage />
-    <!-- <Footer /> -->
+    <router-view />
+    <Footer />
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/shared/NavBar.vue";
-import MainJumbotron from "@/components/shared/MainJumbotron.vue";
-import HomePage from "@/pages/HomePage.vue";
-// import Footer from "@/components/shared/Footer.vue";
+import Footer from "@/components/shared/Footer.vue";
 
 export default {
   name: "App",
   components: {
     NavBar,
-    MainJumbotron,
-    HomePage,
-    // Footer,
+    Footer,
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "assets/css/normalise.css";
+@import "~bulma/bulma.sass";
 </style>

@@ -1,54 +1,66 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light text-decoration-none">
+    <nav
+      class="navbar navbar-light bg-light"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div class="container">
-        <router-link class="navbar-brand" href="#">Event-Buddy</router-link>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="navbar-brand">
+          <router-link class="navbar-item text-decoration-none" to="/">
+            <h3>Event-buddy</h3>
+          </router-link>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Find</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                More
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">About</a>
-                <a class="dropdown-item" href="#">Jobs</a>
-                <a class="dropdown-item" href="#">Contact</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Report an issue</a>
+          <router-link
+            role="button"
+            class="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbarBasicExample"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </router-link>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <router-link class="navbar-item text-decoration-none" to="/">
+              Home
+            </router-link>
+
+            <router-link class="navbar-item text-decoration-none" to="#">
+              Documentation
+            </router-link>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link text-decoration-none"> More </a>
+
+              <div class="navbar-dropdown">
+                <router-link class="navbar-item" to="#"> About </router-link>
+                <router-link class="navbar-item" to="#"> Jobs </router-link>
+                <router-link class="navbar-item" to="#"> Contact </router-link>
+                <hr class="navbar-divider" />
+                <router-link class="navbar-item" to="#">
+                  Report an issue
+                </router-link>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
 
-          <md-button class="btn my-2 my-sm-0" type="submit"> SingUp</md-button>
-          <md-button class="btn my-2 my-sm-0" type="submit">
-            <i class="fas fa-sign-in-alt"></i> Login
-          </md-button>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div>
+                <md-button class="md-dense md-raised md-primary"
+                  >sing up</md-button
+                >
+                <md-button class="md-dense md-raised md-primary"
+                  >Login</md-button
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -66,6 +78,6 @@ export default {
 
 <style  >
 .navbar {
-  background-color: #e4fbff;
+  background-color: #2393a7;
 }
 </style>

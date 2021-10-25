@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!--  -->
-    <md-card class="">
+    <md-card class="my-3">
       <md-card-media-cover md-solid>
         <md-card-media md-ratio="4:3">
           <img :src="category.image" />

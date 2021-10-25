@@ -14,6 +14,7 @@
     "bcrypt": "^3.0.8",
     "body-parser": "^1.18.0",
     "bootstrap": "^4.6.0",
+    "bulma": "^0.7.5",
     "cache-loader": "^2.0.1",
     "connect-mongodb-session": "^2.0.7",
     "core-js": "^3.6.5",
@@ -51,12 +52,13 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
+    "css-loader": "^2.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "css-loader": "^2.1.0"
+    "node-sass": "^4.14.1",
+    "sass": "^1.43.3",
+    "sass-loader": "^7.3.1",
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,

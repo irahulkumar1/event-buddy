@@ -1,31 +1,31 @@
 <template>
   <div>
-    <footer class="footer">
+    <footer class="footer footerBox">
       <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+        <span class="text-muted d-flex justify-content-center"
+          >© 2021 Event-Buddy inc.</span
+        >
       </div>
     </footer>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Footer",
+};
 </script>
 
-<style >
-.footer {
-  position: absolute;
+<style scoped>
+.footerBox {
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
-  background-color: #edeef7;
-}
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
+  line-height: 10px; /* Vertically center the text there */
+  background-color: #d6dafa;
+}
 
 body > .container {
   padding: 60px 15px 0;

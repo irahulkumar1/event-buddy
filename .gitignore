@@ -2,6 +2,7 @@
 node_modules
 /dist
 /server/config/dev.js
+recycle.txt
 
 
 # local env files
