@@ -30,8 +30,8 @@
               Home
             </router-link>
 
-            <router-link class="navbar-item text-decoration-none" to="#">
-              Documentation
+            <router-link class="navbar-item text-decoration-none" to="/find">
+              find
             </router-link>
 
             <div class="navbar-item has-dropdown is-hoverable">

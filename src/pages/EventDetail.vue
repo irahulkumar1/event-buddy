@@ -187,7 +187,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .tag.is-warning {
   opacity: 0.5;
 }

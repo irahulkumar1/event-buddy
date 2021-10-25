@@ -22,4 +22,8 @@ export default {
 <style lang="scss">
 @import "assets/css/normalise.css";
 @import "~bulma/bulma.sass";
+
+routerlink {
+  color: black;
+}
 </style>

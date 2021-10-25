@@ -1,35 +1,39 @@
 <template>
-  <div class="container">
+  <div>
     <MainJumbotron />
-    <div class="container my-4 FeautedEvent-box">
-      <div>
-        <h1 class="d-inline">Featured Events in "Location"</h1>
-        <div class="d-inline float-right">
-          <md-button class="md-primary md-dense md-raised">All</md-button>
-          <md-button class="md-primary md-dense md-raised"
-            >Change view</md-button
-          >
-        </div>
-      </div>
-    </div>
-
-    <!-- ......event.....  -->
     <div class="container">
-      <div class="event row mr-auto d-flex justify-content-around my-1">
-        <EventItem v-for="event in events" :key="event._id" :event="event" />
+      <div class="container my-4 FeautedEvent-box">
+        <div>
+          <h1 class="d-inline">Featured Events in "Location"</h1>
+          <div class="d-inline float-right">
+            <md-button class="md-primary md-dense md-raised" to="/find"
+              >All</md-button
+            >
+            <md-button class="md-primary md-dense md-raised"
+              >Change view</md-button
+            >
+          </div>
+        </div>
       </div>
 
-      <!-- .....categories.....  -->
-      <div class="categories">
-        <div class="container my-4 FeautedEvent-box">
-          <h1 class="d-inline">Categories</h1>
+      <!-- ......event.....  -->
+      <div class="container">
+        <div>
+          <EventItem v-for="event in events" :key="event.id" :event="event" />
         </div>
-        <div class="row mr-auto d-flex justify-content-around">
-          <CategoyItem
-            v-for="category in categories"
-            :key="category._id"
-            :category="category"
-          />
+
+        <!-- .....categories.....  -->
+        <div class="categories">
+          <div class="container my-4 FeautedEvent-box">
+            <h1 class="d-inline">Categories</h1>
+          </div>
+          <div class="row mr-auto d-flex justify-content-around">
+            <CategoyItem
+              v-for="category in categories"
+              :key="category._id"
+              :category="category"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -54,6 +58,7 @@ export default {
     };
   },
   created() {
+    // console.log(this.$store);
     axios.get("/api/v1/events").then((res) => {
       this.events = res.data;
       console.log(this.events);
@@ -68,7 +73,17 @@ export default {
 </script>
 
 <style  >
-.md-card {
+.eventItem {
+  width: 345px;
+  /* height: 200px; */
+  margin: 4px;
+  display: inline-block;
+  vertical-align: top;
+}
+.card-expansion {
+  height: 480px;
+}
+.md-categories {
   width: 320px;
   /* height: 400px; */
   margin: 4px;
