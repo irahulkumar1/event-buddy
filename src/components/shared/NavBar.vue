@@ -52,10 +52,10 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div>
-                <md-button class="md-dense md-raised md-primary"
+                <md-button class="md-dense md-raised md-primary" to="/singup"
                   >sing up</md-button
                 >
-                <md-button class="md-dense md-raised md-primary"
+                <md-button class="md-dense md-raised md-primary" to="/login"
                   >Login</md-button
                 >
               </div>

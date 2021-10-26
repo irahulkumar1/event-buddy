@@ -159,30 +159,27 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapState } from "vuex";
 export default {
   name: "EventDetail",
-  data() {
-    return {
-      event: {},
-      threads: [],
-    };
-  },
-
-  created() {
-    const eventId = this.$route.params.id;
-    axios.get(`/api/v1/events/${eventId}`).then((res) => {
-      this.event = res.data;
-    });
-
-    axios.get(`/api/v1/threads?eventId=${eventId}`).then((res) => {
-      this.threads = res.data;
-    });
-  },
   computed: {
     eventCreator() {
       return this.event.eventCreator || "";
     },
+    ...mapState({
+      event: (state) => state.events.item,
+      threads: (state) => state.threads.items,
+    }),
+  },
+
+  created() {
+    const eventId = this.$route.params.id;
+    this.fetchEventById(eventId);
+    this.fetchThreads(eventId);
+  },
+  methods: {
+    ...mapActions("events", ["fetchEventById"]),
+    ...mapActions("threads", ["fetchThreads"]),
   },
 };
 </script>

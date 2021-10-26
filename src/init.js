@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import AppSpinner from "@/components/shared/AppSpinner.vue";
 
 
 import VueMaterial from 'vue-material';
@@ -23,6 +24,8 @@ Vue.filter('formatDate', function (value, formatType = "LL") {
     return moment(value).format(formatType)
 })
 
+
+Vue.component('AppSpinner', AppSpinner);
 Vue.use(VueMaterial)
 // Vue.use(MdButton)
 // Vue.use(MdContent)

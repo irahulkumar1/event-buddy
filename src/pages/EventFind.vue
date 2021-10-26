@@ -103,17 +103,15 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
-  data() {
-    return {
-      events: [],
-    };
+  computed: {
+    events() {
+      return this.$store.state.events.items;
+    },
   },
   created() {
-    axios.get("/api/v1/events").then((res) => {
-      this.events = res.data;
-    });
+    this.$store.dispatch("events/fetchEvents");
   },
 };
 </script>
