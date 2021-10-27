@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <nav
-      class="navbar navbar-light bg-light"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="container">
+  <div class="navBar-box">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="container color">
         <div class="navbar-brand">
           <router-link class="navbar-item text-decoration-none" to="/">
             <h3>Event-buddy</h3>
@@ -38,11 +34,11 @@
               <a class="navbar-link text-decoration-none"> More </a>
 
               <div class="navbar-dropdown">
-                <router-link class="navbar-item" to="#"> About </router-link>
-                <router-link class="navbar-item" to="#"> Jobs </router-link>
-                <router-link class="navbar-item" to="#"> Contact </router-link>
+                <router-link class="navbar-item" to="/"> About </router-link>
+                <router-link class="navbar-item" to="/"> Jobs </router-link>
+                <router-link class="navbar-item" to="/"> Contact </router-link>
                 <hr class="navbar-divider" />
-                <router-link class="navbar-item" to="#">
+                <router-link class="navbar-item" to="/">
                   Report an issue
                 </router-link>
               </div>
@@ -76,8 +72,8 @@ export default {
 };
 </script>
 
-<style  >
-.navbar {
-  background-color: #2393a7;
+<style scoped>
+.color {
+  background-color: #e0faff;
 }
 </style>

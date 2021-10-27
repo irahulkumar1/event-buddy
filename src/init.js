@@ -11,6 +11,7 @@ import 'vue-material/dist/theme/default.css'
 import moment from 'moment';
 
 
+
 Vue.filter('capitalize', function (value) {
     if (value && typeof value === "string") {
         return value.charAt(0).toUpperCase() + value.slice(1)
@@ -26,7 +27,9 @@ Vue.filter('formatDate', function (value, formatType = "LL") {
 
 
 Vue.component('AppSpinner', AppSpinner);
+
 Vue.use(VueMaterial)
+
 // Vue.use(MdButton)
 // Vue.use(MdContent)
 // Vue.use(MdTabs)

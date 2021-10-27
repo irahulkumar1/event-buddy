@@ -14,33 +14,33 @@ const router = new Router({
     mode: 'history',
     routes: [
         {
+
             path: '/',
-            name: HomePage,
             component: HomePage
         },
         {
+
             path: '/login',
-            name: LoginPage,
             component: LoginPage
         },
         {
+
             path: '/singup',
-            name: RegisterPage,
             component: RegisterPage
         },
         {
+
             path: '/find',
-            name: EventFind,
             component: EventFind
         },
         {
+
             path: '/events/:id',
-            name: EventDetails,
             component: EventDetails
         },
         {
+
             path: '*',
-            name: PageNotFound,
             component: PageNotFound
         }
     ]
