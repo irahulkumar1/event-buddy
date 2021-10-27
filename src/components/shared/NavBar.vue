@@ -47,13 +47,24 @@
 
           <div class="navbar-end">
             <div class="navbar-item">
-              <div>
-                <md-button class="md-dense md-raised md-primary" to="/singup"
-                  >sing up</md-button
-                >
-                <md-button class="md-dense md-raised md-primary" to="/login"
-                  >Login</md-button
-                >
+              <div v-if="user">Welcome {{ user.name }}</div>
+            </div>
+            <div v-if="user" class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"> Account </a>
+              <div class="navbar-dropdown">
+                <a href="#" class="navbar-item"> Profile </a>
+                <hr class="navbar-divider" />
+                <a class="navbar-item"> Logout </a>
+              </div>
+            </div>
+            <div v-else class="navbar-item has-dropdown">
+              <div class="buttons">
+                <router-link to="/singup" class="button is-primary">
+                  <strong>Sign up</strong>
+                </router-link>
+                <router-link to="/login" class="button is-light">
+                  Log in
+                </router-link>
               </div>
             </div>
           </div>
@@ -67,13 +78,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "NavBar",
+  computed: {
+    ...mapGetters({
+      user: "auth/authUser",
+    }),
+  },
 };
 </script>
 
 <style scoped>
 .color {
-  background-color: #e0faff;
+  background-color: #faf9f9;
 }
 </style>

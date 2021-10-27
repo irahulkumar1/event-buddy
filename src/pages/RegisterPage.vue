@@ -7,7 +7,7 @@
           <p class="subtitle has-text-grey">Please register to proceed.</p>
           <div class="box">
             <figure class="avatar">
-              <img src="https://placehold.it/128x128" />
+              <img src="" />
             </figure>
             <form>
               <div class="field">
@@ -208,7 +208,10 @@ export default {
   methods: {
     register() {
       this.$v.form.$touch();
-      this.$store.dispatch("auth/registerUser", this.form);
+      this.$store
+        .dispatch("auth/registerUser", this.form)
+        .then(() => this.$router.push("/login"))
+        .catch((err) => console.log(err));
     },
   },
 };

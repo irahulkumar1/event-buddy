@@ -1,5 +1,9 @@
 const Event = require('../models/events');
 
+exports.getSecret = function (req, res) {
+  return res.json({ secret: 'I am secret Message' })
+}
+
 exports.getEvents = function (req, res) {
   Event.find({})
     .populate('category')
