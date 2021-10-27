@@ -3,11 +3,23 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./config/dev');
 
+const session = require('express-session')
+const passport = require('passport');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const store = new MongoDBStore({
+  uri: config.DB_URI,
+  collecton: 'eventSessions',
+})
+// (err) => console.log(err))
+store.on('error', (error) => console.log(error))
+
 require("./models/events");
 require("./models/users");
 require("./models/threads");
 require("./models/posts");
 require("./models/categories");
+require("./passport/passport")
 
 const eventsRoutes = require('./routes/events'),
   usersRoutes = require('./routes/users'),
@@ -22,6 +34,19 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true })
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use(session({
+  secret: config.SESSION_SECRET,
+  cookie: {
+    maxAge: 3600000
+  },
+  resave: false,
+  saveUninitialized: false,
+  store
+}
+))
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/v1/events', eventsRoutes);
 app.use('/api/v1/users', usersRoutes);
