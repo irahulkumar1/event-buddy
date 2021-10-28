@@ -1,7 +1,6 @@
 const User = require('../models/users');
 const passport = require('passport');
-// const { next } = require('vue/types/umd');
-// const { getOwnPropertySymbols } = require('core-js/core/object');
+
 
 
 exports.getUsers = function (req, res) {
@@ -15,6 +14,15 @@ exports.getUsers = function (req, res) {
       return res.json(users);
     });
 }
+
+exports.getCurrentUser = function (req, res, next) {
+  const user = req.user;
+
+  if (!user) {
+    return res.sendStatus(422);
+  }
+  return res.json(user.toAuthJSON());
+};
 
 exports.register = function (req, res) {
   const registerData = req.body
@@ -76,10 +84,7 @@ exports.login = function (req, res, next) {
       return next(err)
     }
     if (passportUser) {
-      req.login(passportUser, function (err) {
-        if (err) { next(err); }
-        return res.json(passportUser)
-      });
+      return res.json(passportUser.toAuthJSON())
     } else {
       return res.status(422).send({
         errors: {

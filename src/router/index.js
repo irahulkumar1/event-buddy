@@ -7,6 +7,7 @@ import EventFind from "@/pages/EventFind.vue"
 import PageNotFound from "@/components/shared/PageNotFound.vue"
 import LoginPage from "@/pages/LoginPage.vue"
 import RegisterPage from "@/pages/RegisterPage.vue"
+import PageNotAuth from "@/pages/PageNotAtuh.vue"
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ const router = new Router({
 
             path: '/events/:id',
             component: EventDetails
+        },
+        {
+
+            path: '/401',
+            component: PageNotAuth
         },
         {
 

@@ -47,23 +47,31 @@
 
           <div class="navbar-end">
             <div class="navbar-item">
-              <div v-if="user">Welcome {{ user.name }}</div>
+              <div v-if="user">
+                <span> Welcome {{ user.name }}</span>
+              </div>
             </div>
             <div v-if="user" class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link"> Account </a>
               <div class="navbar-dropdown">
-                <a href="#" class="navbar-item"> Profile </a>
+                <a href="#" class="navbar-item">
+                  <i class="far fa-user"></i> &nbsp; Profile
+                </a>
                 <hr class="navbar-divider" />
-                <a class="navbar-item"> Logout </a>
+                <a @click.prevent="logout" class="navbar-item">
+                  <i class="fas fa-sign-out-alt"></i> &nbsp; Logout
+                </a>
               </div>
             </div>
             <div v-else class="navbar-item has-dropdown">
               <div class="buttons">
-                <router-link to="/singup" class="button is-primary">
-                  <strong>Sign up</strong>
+                <router-link to="/singup">
+                  <md-button class="md-dense">
+                    <strong>Sign up</strong>
+                  </md-button>
                 </router-link>
-                <router-link to="/login" class="button is-light">
-                  Log in
+                <router-link to="/login">
+                  <md-button class="md-raised md-dense"> Log in </md-button>
                 </router-link>
               </div>
             </div>
@@ -86,11 +94,20 @@ export default {
       user: "auth/authUser",
     }),
   },
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/logout");
+    },
+  },
 };
 </script>
 
-<style scoped>
+<style>
 .color {
   background-color: #faf9f9;
+}
+router-link a {
+  text-decoration: none;
+  color: black;
 }
 </style>

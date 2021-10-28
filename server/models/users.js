@@ -61,4 +61,24 @@ userSchema.methods.comparePassword = function (candidatePassword, callback) {
 }
 
 
+userSchema.methods.generateJWT = function () {
+   return jwt.sign({
+      email: this.email,
+      id: this._id
+   }, config.JWT_SECRET, { expiresIn: '1h' })
+}
+
+userSchema.methods.toAuthJSON = function () {
+   return {
+      _id: this.Id,
+      avatar: this.avatar,
+      name: this.name,
+      username: this.username,
+      info: this.info,
+      email: this.email,
+      joinedEvents: this.joinedEvents,
+      token: this.generateJWT()
+   };
+}
+
 module.exports = mongoose.model('User', userSchema);

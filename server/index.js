@@ -7,12 +7,12 @@ const session = require('express-session')
 const passport = require('passport');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-const store = new MongoDBStore({
-  uri: config.DB_URI,
-  collecton: 'eventSessions',
-})
-// (err) => console.log(err))
-store.on('error', (error) => console.log(error))
+// const store = new MongoDBStore({
+//   uri: config.DB_URI,
+//   collecton: 'eventSessions',
+// })
+// // (err) => console.log(err))
+// store.on('error', (error) => console.log(error))
 
 require("./models/events");
 require("./models/users");
@@ -35,18 +35,18 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use(session({
-  secret: config.SESSION_SECRET,
-  cookie: {
-    maxAge: 3600000
-  },
-  resave: false,
-  saveUninitialized: false,
-  store
-}
-))
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(session({
+//   secret: config.SESSION_SECRET,
+//   cookie: {
+//     maxAge: 3600000
+//   },
+//   resave: false,
+//   saveUninitialized: false,
+//   store
+// }
+// ))
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/api/v1/events', eventsRoutes);
 app.use('/api/v1/users', usersRoutes);
