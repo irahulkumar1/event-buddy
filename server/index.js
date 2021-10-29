@@ -5,8 +5,10 @@ const config = require('./config/dev');
 
 const session = require('express-session')
 const passport = require('passport');
-const MongoDBStore = require('connect-mongodb-session')(session);
+// const MongoDBStore = require('connect-mongodb-session')(session);
 
+
+//for session auth
 // const store = new MongoDBStore({
 //   uri: config.DB_URI,
 //   collecton: 'eventSessions',
@@ -35,6 +37,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
+
+//for session auth
 // app.use(session({
 //   secret: config.SESSION_SECRET,
 //   cookie: {

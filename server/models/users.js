@@ -70,7 +70,7 @@ userSchema.methods.generateJWT = function () {
 
 userSchema.methods.toAuthJSON = function () {
    return {
-      _id: this.Id,
+      _id: this._Id,
       avatar: this.avatar,
       name: this.name,
       username: this.username,

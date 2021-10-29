@@ -84,6 +84,8 @@ exports.login = function (req, res, next) {
       return next(err)
     }
     if (passportUser) {
+
+      //{only for sessiosn auth}
       return res.json(passportUser.toAuthJSON())
     } else {
       return res.status(422).send({

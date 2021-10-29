@@ -25,7 +25,7 @@ passport.use(new LocalStrategy({
 
 
 const jwtOptions = {
-    jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
     secretOrKey: config.JWT_SECRET
 };
 
@@ -34,6 +34,8 @@ passport.use(new JwtStrategy(jwtOptions, function (payload, done) {
         if (err) { return done(err, false) }
         if (user) {
             done(null, false)
+        } else {
+            done(null, false)
         }
-    })
-}))
+    });
+}));
