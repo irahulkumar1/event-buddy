@@ -10,8 +10,16 @@
               <md-button class="md-primary md-dense md-raised" to="/find"
                 >All</md-button
               >
-              <md-button class="md-primary md-dense md-raised"
-                >Change view</md-button
+              <!-- <md-button
+                class="md-primary md-dense md-raised"
+                to="/events/secret"
+                >secret page view Change view</md-button
+              > -->
+              <md-button
+                v-if="user"
+                class="md-primary md-dense md-raised"
+                :to="{ name: 'PageEventCreate' }"
+                >create Event</md-button
               >
             </div>
           </div>
@@ -56,7 +64,7 @@ import CategoyItem from "@/components/CategoyItem.vue";
 import EventItem from "@/components/EventItem.vue";
 import MainJumbotron from "@/components/shared/MainJumbotron.vue";
 
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -70,6 +78,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({
+      user: "auth/authUser",
+    }),
     ...mapState({
       events: (state) => state.events.items,
       categories: (state) => state.categories.items,

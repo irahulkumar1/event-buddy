@@ -176,10 +176,10 @@ export default {
   validations: {
     form: {
       username: {
-        required,
+        // required,
       },
       name: {
-        required,
+        // required,
       },
       avatar: {
         url,
@@ -200,9 +200,9 @@ export default {
     },
   },
   computed: {
-    // isFormInvalid() {
-    //   return this.$v.form.$invalid;
-    // },
+    isFormInvalid() {
+      return this.$v.form.$invalid;
+    },
   },
 
   methods: {
@@ -211,7 +211,14 @@ export default {
       this.$store
         .dispatch("auth/registerUser", this.form)
         .then(() => this.$router.push("/login"))
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          const error = err.response.data.errors.message;
+          this.$toasted.error(error, {
+            theme: "toasted-primary",
+            position: "top-center",
+            duration: 3500,
+          });
+        });
     },
   },
 };

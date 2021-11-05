@@ -1,5 +1,5 @@
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local');
 const User = require('../models/users');
 const config = require('../config/dev')
 const JwtStrategy = require('passport-jwt').Strategy;
@@ -8,7 +8,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
-    passportField: 'password'
+    passwordField: 'password'
 }, (email, password, done) => {
     User.findOne({ email }, function (err, user) {
         if (err) { return done(err); }
@@ -25,17 +25,59 @@ passport.use(new LocalStrategy({
 
 
 const jwtOptions = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: config.JWT_SECRET
 };
 
 passport.use(new JwtStrategy(jwtOptions, function (payload, done) {
     User.findById(payload.id, function (err, user) {
         if (err) { return done(err, false) }
+
         if (user) {
-            done(null, false)
+            done(null, user);
         } else {
             done(null, false)
         }
     });
 }));
+
+
+
+
+
+
+
+
+// passport.use(new LocalStrategy({
+//     usernameField: 'email',
+//     passportField: 'password'
+// }, (email, password, done) => {
+//     User.findOne({ email }, function (err, user) {
+//         if (err) { return done(err); }
+//         if (!user) { return done(null, false) }
+
+//         user.comparePassword(password, function (err, isMatch) {
+//             if (err) { return done(err); }
+//             if (!isMatch) { return done(null, false) }
+
+//             return done(null, user)
+//         })
+//     })
+// }))
+
+
+// const jwtOptions = {
+//     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken,
+//     secretOrKey: config.JWT_SECRET
+// };
+
+// passport.use(new JwtStrategy(jwtOptions, function (payload, done) {
+//     User.findById(payload.id, function (err, user) {
+//         if (err) { return done(err, false) }
+//         if (user) {
+//             done(null, false)
+//         } else {
+//             done(null, false)
+//         }
+//     });
+// }));

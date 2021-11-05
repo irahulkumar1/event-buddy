@@ -26,9 +26,7 @@
         </div>
         <div class="is-pulled-right">
           <!-- We will handle this later (: -->
-          <md-button class="md-dense md-raised md-accent"
-            >Leave Group</md-button
-          >
+          <button class="button is-danger">Leave Group</button>
         </div>
       </div>
     </section>
@@ -58,7 +56,7 @@
               </div>
               <div class="event-side-box-map">
                 <img
-                  src="https://cnet2.cbsistatic.com/img/H_zPLL8-QTZOLxJvgHQ1Jkz0EgY=/830x467/2013/07/10/f0bcef02-67c2-11e3-a665-14feb5ca9861/maps_routemap.png"
+                  src="https://cdn.wccftech.com/wp-content/uploads/2017/03/Google-Maps.jpg"
                   class="venueMap-mapImg span--100"
                   alt="Location image of event venue"
                 />
@@ -74,12 +72,12 @@
               <div class="columns is-multiline is-mobile">
                 <!-- Joined People Images Here -->
                 <div
-                  v-for="person in event.joinedPeopel"
-                  :key="person._Id"
+                  v-for="person in event.joinedPeople"
+                  :key="person._id"
                   class="column is-3"
                 >
                   <figure class="image is-64x64">
-                    <img class="is-rounded" :src="person.avatar" />
+                    <img class="is-rounded" :src="person.avatar" alt="Image" />
                   </figure>
                 </div>
               </div>
@@ -88,10 +86,10 @@
           </div>
           <div class="column is-7 is-offset-1">
             <div class="content is-medium">
-              <h3 class="title is-3">About the event</h3>
+              <h3 class="title is-3">About the Meetup</h3>
               <p>{{ event.description }}</p>
-              <!-- Join event, We will handle it later (: -->
-              <md-button class="button is-primary">Join In</md-button>
+              <!-- Join Meetup, We will handle it later (: -->
+              <button class="button is-primary">Join In</button>
               <!-- Not logged In Case, handle it later (: -->
               <!-- <button :disabled="true"
                       class="button is-warning">You need authenticate in order to join</button> -->
@@ -112,17 +110,13 @@
                       placeholder="Write a post"
                       rows="1"
                     ></textarea>
-                    <!-- <button :disabled="true" class="button is-primary m-t-sm">
-                      <i class="far fa-paper-plane"></i>
-                    </button> -->
-                    <md-button :disabled="true" class="md-icon-button m-t-sm">
-                      <md-icon> <i class="far fa-paper-plane"></i></md-icon>
-                    </md-button>
+                    <button :disabled="true" class="button is-primary m-t-sm">
+                      Send
+                    </button>
                   </div>
                 </form>
                 <!-- Create new post END, handle later -->
                 <!-- Posts START -->
-
                 <article
                   v-for="post in thread.post"
                   :key="post._id"
@@ -140,9 +134,11 @@
                         <strong class="author">{{ post.user.name }}</strong>
                         {{ " " }}
                         <!-- Post Updated at -->
-                        <small class="post-time">{{ post.updatedAt }}</small>
+                        <small class="post-time">{{
+                          post.updateAt | formatDate("LLL")
+                        }}</small>
                         <br />
-                        <p class="post-content-message">{{ post.text }}</p>
+                        <p class="post-content-message">{{ post.text }} (:</p>
                       </div>
                     </div>
                   </div>
@@ -159,19 +155,32 @@
 </template>
 
 <script>
+// import axios from "axios";
 import { mapActions, mapState } from "vuex";
 export default {
   name: "EventDetail",
+
   computed: {
-    eventCreator() {
-      return this.event.eventCreator || "";
-    },
     ...mapState({
       event: (state) => state.events.item,
       threads: (state) => state.threads.items,
     }),
+    eventCreator() {
+      return this.event.eventCreator || {};
+    },
+    isAuthenticated() {
+      return this.$store.getters[`auth/isAuthenticated`];
+    },
+    isEventOwner() {
+      return this.$store.getters[`auth/isEventOwner`](this.eventCreator._id);
+    },
+    isMember() {
+      return this.$store.getters[`auth/isMember`](this.event._id);
+    },
+    canJoin() {
+      return !this.isEventOwner && this.isAuthenticated && !this.isMember;
+    },
   },
-
   created() {
     const eventId = this.$route.params.id;
     this.fetchEventById(eventId);
@@ -206,7 +215,7 @@ export default {
     border: 1px solid rgba(46, 62, 72, 0.12);
     color: white;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url("https://images.unsplash.com/photo-1531263060782-b024de9b9793?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80");
+      url("https://media.istockphoto.com/photos/table-setting-for-an-event-party-or-wedding-reception-picture-id479977238?b=1&k=20&m=479977238&s=170667a&w=0&h=V5aoTjfquc3a-qNBz9hyKJ9bX48XuJW0DVzCaO77U1c=");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

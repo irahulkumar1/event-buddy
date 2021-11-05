@@ -9,7 +9,7 @@ import auth from './modules/auth'
 // import axios from 'axios'
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
     modules: {
         events,
         categories,
@@ -28,4 +28,3 @@ const store = new Vuex.Store({
 
 
 })
-export default store;

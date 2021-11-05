@@ -13,6 +13,7 @@
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicExample"
+            to=""
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -65,7 +66,7 @@
             </div>
             <div v-else class="navbar-item has-dropdown">
               <div class="buttons">
-                <router-link to="/singup">
+                <router-link to="/signup">
                   <md-button class="md-dense">
                     <strong>Sign up</strong>
                   </md-button>

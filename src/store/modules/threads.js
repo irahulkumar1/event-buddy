@@ -1,13 +1,11 @@
 import axios from 'axios'
 
-const threads = {
+export default {
     namespaced: true,
     state: {
         items: []
     },
-    getters: {
 
-    },
     actions: {
         fetchThreads({ state, commit }, eventId) {
             return axios.get(`/api/v1/threads?eventId=${eventId}`)
@@ -23,4 +21,3 @@ const threads = {
     }
 }
 
-export default threads

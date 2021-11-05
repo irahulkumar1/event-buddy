@@ -9,6 +9,7 @@ import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css'
 import moment from 'moment';
+import Toasted from 'vue-toasted'
 
 
 
@@ -29,6 +30,7 @@ Vue.filter('formatDate', function (value, formatType = "LL") {
 Vue.component('AppSpinner', AppSpinner);
 
 Vue.use(VueMaterial)
+Vue.use(Toasted)
 
 // Vue.use(MdButton)
 // Vue.use(MdContent)

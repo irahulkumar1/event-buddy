@@ -108,7 +108,15 @@ export default {
       this.$store
         .dispatch("auth/loginUser", this.form)
         .then(() => this.$router.push("/"))
-        .catch((err) => console.log(err));
+
+        .catch((err) => {
+          const error = err.response.data.errors.message;
+          this.$toasted.error(error, {
+            theme: "toasted-primary",
+            position: "top-center",
+            duration: 1500,
+          });
+        });
     },
   },
 };

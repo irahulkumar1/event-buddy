@@ -36,3 +36,23 @@ exports.getEventById = function (req, res) {
       return res.json(event);
     });
 }
+
+
+
+// Create Event
+exports.createEvent = function (req, res) {
+  const eventData = req.body;
+  const user = req.user;
+
+  const event = new Event(eventData);
+  event.user = user;
+  event.status = 'active';
+
+  event.save((error, createdEvent) => {
+    if (error) {
+      return res.status(422).send({ error });
+    }
+
+    return res.json(createdEvent)
+  })
+}

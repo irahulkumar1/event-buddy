@@ -23,13 +23,13 @@
 
 <script>
 export default {
+  name: "MainJumbotron",
   props: {
     MainJumbotron: {
       required: true,
       type: Object,
     },
   },
-  name: "MainJumbotron",
 };
 </script>
 

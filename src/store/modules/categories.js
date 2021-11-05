@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const categories = {
+export default {
     namespaced: true,
     state: {
         items: []
@@ -18,9 +18,5 @@ const categories = {
                 })
         },
     },
-    mutations: {
 
-    }
 }
-
-export default categories
