@@ -46,9 +46,10 @@ export default {
   },
   methods: {
     createEvent(eventToCreate) {
-      this.$store.dispatch("events/createEvent", eventToCreate);
-      console
-        .log("gffghgfgh", eventToCreate)
+      this.$store
+        .dispatch("events/createEvent", eventToCreate)
+        // console
+        //   .log("gffghgfgh", eventToCreate)
         .then((createdEvent) => {
           this.$router.push(`/events/${createdEvent._id}`);
         })

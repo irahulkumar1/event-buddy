@@ -1,6 +1,7 @@
 import axios from 'axios'
 //import jwt from 'jsonwebtoken'
 import axiosInstance from '@/services/axios'
+import Vue from 'vue'
 
 // function checkTokenValidity(token) {
 //     if (token) {
@@ -17,7 +18,8 @@ export default {
     namespaced: true,
     state: {
         user: null,
-        isAuthResolved: false
+        isAuthResolved: false,
+
 
     },
     getters: {
@@ -100,12 +102,27 @@ export default {
         }
 
     },
+    addEventToAuthUser({ commit, state, }, eventId) {
+        const userEvents = [...state.user['joinedEvents'], eventId]
+        commit('setEventsToAutheUser', userEvents)
+
+    },
+    removeEventFromAuthUser({ commit, state }, eventId) {
+        const userEventsIds = [...state.user['joinedEvents']]
+        const index = userEventsIds.findIndex(userEventId => userEventId === eventId)
+
+        userEventsIds.splice(index, 1)
+        commit('setEventsToAuthUser', userEventsIds)
+    },
     mutations: {
         setAuthUser(state, user) {
             return state.user = user
         },
         setAuthState(state, authState) {
             return state.isAuthResolved = authState
+        },
+        setEventsToAuthUser(state, events) {
+            return Vue.set(state.user, 'joinedEvents', events)
         }
     }
 }

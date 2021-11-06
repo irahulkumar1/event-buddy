@@ -70,8 +70,8 @@ module.exports = {
     },
     {
       "_id": event3Id,
-      "location": "Lisbon, PT",
-      "processedLocation": "lisbonpt",
+      "location": "Delhi, IN",
+      "processedLocation": "Red Fort",
       "title": "Cycling Together",
       "image": "https://images.unsplash.com/photo-1527956041665-d7a1b380c460?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
       "description": "Lets watch new Tour De France",
@@ -108,8 +108,8 @@ module.exports = {
     },
     {
       "_id": event5Id,
-      "location": "Berlin, GE",
-      "processedLocation": "berlinge",
+      "location": "Hyderabad, IN",
+      "processedLocation": "Golconda Fort",
       "title": "New Aquaman 5",
       "image": "https://images.unsplash.com/photo-1527956041665-d7a1b380c460?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
       "description": "Lets watch new aquaman together",

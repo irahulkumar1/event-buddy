@@ -31,7 +31,7 @@ const eventsRoutes = require('./routes/events'),
 
 mongoose.connect(config.DB_URI, { useNewUrlParser: true })
   .then(() => console.log('DB Connected!'))
-  .catch(err => console.log(err));
+  .catch(errors => console.log(errors));
 
 const app = express();
 

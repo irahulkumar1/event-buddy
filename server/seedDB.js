@@ -51,7 +51,7 @@ class DB {
   }
 
   async seedDb() {
-    //await this.cleanDb();
+    // await this.cleanDb();
     await this.pushDataToDb();
   }
 }
@@ -62,4 +62,4 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true })
     await db.seedDb();
     console.log('You can close connection now!')
   })
-  .catch(err => console.log(err));
+  .catch(errors => console.log(errors));

@@ -1,35 +1,43 @@
 <template>
   <div class="event-detail-page">
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <h2 class="subtitle">
-            {{ event.startDate | formatDate }}
-          </h2>
-          <h1 class="title">
-            {{ event.title }}
-          </h1>
-          <article class="media v-center">
-            <figure class="media-left">
-              <p class="image is-64x64">
-                <img class="is-rounded" :src="eventCreator.avatar" />
-              </p>
-            </figure>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  Created by <strong>{{ eventCreator.name }}</strong>
+    <div>
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h2 class="subtitle">
+              {{ event.startDate | formatDate }}
+            </h2>
+            <h1 class="title">
+              {{ event.title }}
+            </h1>
+            <article class="media v-center">
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img class="is-rounded" :src="eventCreator.avatar" />
                 </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    Created by <strong>{{ eventCreator.name }}</strong>
+                  </p>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </div>
+          <div class="is-pulled-right">
+            <!-- will handle later (: -->
+            <button
+              v-if="isMember"
+              @click="leaveEvent"
+              class="button is-danger"
+            >
+              Leave Event
+            </button>
+          </div>
         </div>
-        <div class="is-pulled-right">
-          <!-- We will handle this later (: -->
-          <button class="button is-danger">Leave Group</button>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
     <section class="section">
       <div class="container">
         <div class="columns">
@@ -88,12 +96,29 @@
             <div class="content is-medium">
               <h3 class="title is-3">About the Meetup</h3>
               <p>{{ event.description }}</p>
-              <!-- Join Meetup, We will handle it later (: -->
-              <button class="button is-primary">Join In</button>
-              <!-- Not logged In Case, handle it later (: -->
-              <!-- <button :disabled="true"
-                      class="button is-warning">You need authenticate in order to join</button> -->
+
+              <button
+                v-if="canJoin"
+                @click="joinEvent"
+                class="button is-primary"
+              >
+                Join In
+              </button>
+
+              <button
+                v-if="!isAuthenticated"
+                :disabled="true"
+                class="button is-warning"
+              >
+                You need to login to join
+              </button>
             </div>
+            <ThreadCreateModal
+              class="my-2"
+              @threadSubmitted="createThread"
+              :btnTitle="`Welcome ${authUser.name}, Start a new thread`"
+              :title="'Create Thread'"
+            />
             <!-- Thread List START -->
             <div class="content is-medium">
               <h3 class="title is-3">Threads</h3>
@@ -124,7 +149,7 @@
                 >
                   <figure class="media-left is-rounded user-image">
                     <p class="image is-32x32">
-                      <img class="is-rounded" :src="post.user.avatar" />
+                      <img class="is-rounded" />
                     </p>
                   </figure>
                   <div class="media-content">
@@ -157,15 +182,21 @@
 <script>
 // import axios from "axios";
 import { mapActions, mapState } from "vuex";
+import ThreadCreateModal from "@/components/ThreadCreateModal.vue";
 export default {
   name: "EventDetail",
+  components: {
+    ThreadCreateModal,
+  },
 
   computed: {
     ...mapState({
       event: (state) => state.events.item,
       threads: (state) => state.threads.items,
+      authUser: (state) => state.auth.user,
     }),
     eventCreator() {
+      console.log("some data", this.event.eventCreator);
       return this.event.eventCreator || {};
     },
     isAuthenticated() {
@@ -184,11 +215,26 @@ export default {
   created() {
     const eventId = this.$route.params.id;
     this.fetchEventById(eventId);
+    // this.fetchEvents(eventId);
     this.fetchThreads(eventId);
   },
   methods: {
     ...mapActions("events", ["fetchEventById"]),
-    ...mapActions("threads", ["fetchThreads"]),
+    // ...mapActions("event", ["fetchEvents"]),
+    ...mapActions("threads", ["fetchThreads", "postThread"]),
+
+    joinEvent() {
+      this.$store.dispatch("events/joinEvent", this.event._id);
+    },
+    leaveEvent() {
+      this.$store.dispatch("events/leaveEvent", this.event._id);
+    },
+    createThread({ title, done }) {
+      this.postThread(title, title);
+      // console.log( title);
+
+      done();
+    },
   },
 };
 </script>

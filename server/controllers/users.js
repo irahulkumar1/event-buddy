@@ -91,7 +91,9 @@ exports.login = function (req, res, next) {
     if (passportUser) {
 
       //{only for sessiosn auth}
-      return res.json(passportUser.toAuthJSON())
+      console.log({ ...passportUser, token: passportUser.toAuthJSON().token })
+      return res.json({ ...passportUser, token: passportUser.toAuthJSON().token })
+
     } else {
       return res.status(422).send({
         errors: {
