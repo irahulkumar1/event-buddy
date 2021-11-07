@@ -23,15 +23,16 @@ exports.getEventById = function (req, res) {
   const { id } = req.params;
 
   Event.findById(id)
-    .populate('eventCreator', 'name id avatar')
-    .populate('category')
-    .populate({
-      path: 'joinedPeople',
-      options: { limit: 5, sort: { username: -1 } }
-    })
+    // .populate('category')
+    // .populate({
+    //   path: 'joinedPeople',
+    //   options: { limit: 5, sort: { username: -1 } }
+    // })
+    .populate('eventCreator')
     .exec((errors, event) => {
       if (errors) {
-        return res.status(422).send({ errors });
+        console.log(errors.message)
+        return res.status(401).send({ errors });
       }
 
       return res.json(event);
@@ -45,6 +46,8 @@ exports.createEvent = function (req, res) {
   const eventData = req.body;
   console.log('createEvent', eventData)
   const user = req.user;
+  eventData.eventCreator = user.id
+
 
   const event = new Event(eventData);
   event.user = user;

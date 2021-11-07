@@ -33,11 +33,12 @@ export default {
                 })
         },
         createEvent({ rootState }, eventToCreate) {
-            console.log(rootState.auth.user)
+            console.log('hello root', rootState.auth.user)
             eventToCreate.eventCreator = rootState.auth.user._id
             // eventToCreate.processedLocation = eventToCreate.location.toLowerCase().replace(/[\s,]+/g, '').trim()
-
+            console.log('eventCreator', eventToCreate)
             return axiosInstance.post('/api/v1/events', eventToCreate)
+
                 .then(res => res.data)
         },
 

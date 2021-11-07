@@ -74,6 +74,7 @@
               <ul>
                 <li v-for="thread in threads" :key="thread._id">
                   {{ thread.title }}
+                  <!-- console.log("threadDAta",thread) -->
                 </li>
               </ul>
               <p class="menu-label">Who is Going</p>

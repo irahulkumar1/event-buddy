@@ -43,6 +43,7 @@ export default {
         loginUser({ commit }, userData) {
             return axios.post('/api/v1/users/login', userData)
                 .then(res => {
+                    console.log(res.data)
                     const user = res.data
 
                     localStorage.setItem('event-jwt', user.token)
@@ -115,8 +116,11 @@ export default {
         commit('setEventsToAuthUser', userEventsIds)
     },
     mutations: {
+
         setAuthUser(state, user) {
-            return state.user = user
+            state.user = user
+            console.log("setAuth", state)
+            return state
         },
         setAuthState(state, authState) {
             return state.isAuthResolved = authState

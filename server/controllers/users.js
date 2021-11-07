@@ -69,7 +69,7 @@ exports.login = function (req, res, next) {
   const { email, password } = req.body
 
   if (!email) {
-    return res.status(422).json({
+    return res.status(401).json({
       errors: {
         email: 'is required',
         message: 'Email is required'
@@ -77,7 +77,7 @@ exports.login = function (req, res, next) {
     })
   }
   if (!password) {
-    return res.status(422).json({
+    return res.status(4).json({
       errors: {
         password: 'is required',
         message: 'Password is required'
@@ -91,8 +91,8 @@ exports.login = function (req, res, next) {
     if (passportUser) {
 
       //{only for sessiosn auth}
-      console.log({ ...passportUser, token: passportUser.toAuthJSON().token })
-      return res.json({ ...passportUser, token: passportUser.toAuthJSON().token })
+      console.log({ ...passportUser._doc, token: passportUser.toAuthJSON().token })
+      return res.json({ ...passportUser._doc, token: passportUser.toAuthJSON().token })
 
     } else {
       return res.status(422).send({

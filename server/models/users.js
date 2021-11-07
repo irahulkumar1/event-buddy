@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const Event = require('./events');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const config = require('../config/dev')
+const config = require('../config')
 
 const userSchema = new Schema({
    avatar: String,

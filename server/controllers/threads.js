@@ -8,11 +8,14 @@ exports.getThreads = function (req, res) {
     .populate({
       path: 'posts',
       options: { limit: 5, sort: { 'createdAt': -1 } },
-      populate: { path: 'user' }
+      populate: { path: 'user', model: 'User' }
+
     })
+    .populate("user")
     .exec((errors, threads) => {
 
       if (errors) {
+        console.log(errors.message)
         return res.status(422).send({ errors });
       }
 

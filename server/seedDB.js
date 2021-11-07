@@ -6,7 +6,7 @@ const Thread = require('./models/threads');
 const Category = require('./models/categories')
 
 const data = require('./data.js');
-const config = require('./config/dev');
+const config = require('./config');
 
 class DB {
   constructor() {
@@ -18,12 +18,12 @@ class DB {
     this.models = [Event, User, Post, Thread, Category];
   }
 
-  // async cleanDb() {
-  //   for (let model of this.models) {
-  //     await model.deleteMany({}, () => { })
-  //     console.log(`Data for model ${model.collection.collectionName} Deleted!`)
-  //   }
-  // }
+  async cleanDb() {
+    for (let model of this.models) {
+      await model.deleteMany({}, () => { })
+      console.log(`Data for model ${model.collection.collectionName} Deleted!`)
+    }
+  }
 
   async pushDataToDb() {
     await this.categories.forEach(async (category) => {
@@ -51,7 +51,7 @@ class DB {
   }
 
   async seedDb() {
-    // await this.cleanDb();
+    await this.cleanDb();
     await this.pushDataToDb();
   }
 }
