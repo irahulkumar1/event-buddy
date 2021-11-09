@@ -7,6 +7,8 @@ const AuthCtrl = require('../controllers/auth')
 router.get('', UsersCtrl.getUsers);
 router.get('/me', AuthCtrl.onlyAuthUser, UsersCtrl.getCurrentUser);
 
+router.patch('/:hash/activate', UsersCtrl.activateUser)
+
 router.post('/register', UsersCtrl.register)
 router.post('/login', UsersCtrl.login)
 router.post('/logout', UsersCtrl.logout)

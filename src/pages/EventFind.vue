@@ -12,9 +12,11 @@
         </div>
         <div class="is-pulled-right">
           <!-- We will handle this later (: -->
-          <md-button class="md-dense md-raised md-accent"
-            >Leave Group</md-button
-          >
+          <div>
+            <!-- <md-button class="md-dense md-raised md-accent"
+              >Leave Group</md-button
+            > -->
+          </div>
         </div>
       </div>
     </section>
@@ -93,11 +95,11 @@
           </router-link>
         </div>
       </div>
-      <div>
+      <!-- <div>
         <span class="tag is-warning is-large my-3"
           >No events found :( You might try to change search criteria (:</span
         >
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

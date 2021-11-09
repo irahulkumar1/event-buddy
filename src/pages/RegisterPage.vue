@@ -176,10 +176,10 @@ export default {
   validations: {
     form: {
       username: {
-        // required,
+        required,
       },
       name: {
-        // required,
+        required,
       },
       avatar: {
         url,

@@ -30,6 +30,7 @@ const userSchema = new Schema({
       maxlength: [32, 'Too long, max is 32 characters'],
       required: 'Password is required'
    },
+   active: { type: Boolean, default: false },
    info: String,
    createdAt: { type: Date, default: Date.now },
    updatedAt: { type: Date, default: Date.now },
@@ -51,7 +52,7 @@ userSchema.pre("save", function (next) {
    });
 });
 
-//Every user have acces to this methods
+
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
       if (err) { return callback(err); }

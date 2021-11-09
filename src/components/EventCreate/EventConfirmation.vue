@@ -50,7 +50,7 @@ export default {
       required: true,
       type: Object,
     },
-  },
+  }, 
   created() {},
   validations: {},
 };

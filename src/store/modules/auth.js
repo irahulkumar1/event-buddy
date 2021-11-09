@@ -1,17 +1,8 @@
 import axios from 'axios'
-//import jwt from 'jsonwebtoken'
+
 import axiosInstance from '@/services/axios'
 import Vue from 'vue'
 
-// function checkTokenValidity(token) {
-//     if (token) {
-//         const decodedToken = jwt.decode(token)
-
-//         return decodedToken && (decodedToken.exp * 1000) > new Date().getTime()
-//     }
-
-//     return false
-// }
 
 
 export default {
@@ -53,16 +44,14 @@ export default {
         registerUser(context, userData) {
             return axios.post('/api/v1/users/register', userData)
         },
+
+
+        activateUser(_, hash) {
+            return axios.patch(`/api/v1/users/${hash}`)
+        },
+
         logout({ commit }) {
-            //for session auth
-            // return axios.post('/api/v1/users/logout')
-            //     .then(() => {
-            //         commit('setAuthUser', null)
-            //         return true
-            //     })
-            //     .catch(err => {
-            //         return err
-            //     })
+
             return new Promise((resolve) => {
                 localStorage.removeItem('event-jwt')
                 commit('setAuthUser', null)

@@ -11,7 +11,8 @@ import SecretPage from "@/pages/SecretPage.vue"
 import PageEventCreate from "@/pages/PageEventCreate.vue"
 import PageNotFound from "@/components/shared/PageNotFound.vue"
 import PageNotAuth from "@/pages/PageNotAuthenticated.vue"
-// import { auth } from 'firebase-admin';
+import PageActivator from "@/pages/ActivateUser.vue"
+
 
 Vue.use(Router)
 
@@ -36,7 +37,12 @@ const router = new Router({
             meta: { onlyGuestUser: true }
         },
         {
-
+            name: 'PageActivator',
+            path: '/users/:hash/activate',
+            component: PageActivator,
+            meta: { onlyGuestUser: true }
+        },
+        {
             path: '/find',
             component: EventFind
         },
